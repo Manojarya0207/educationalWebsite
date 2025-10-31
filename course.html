@@ -1,107 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>University Website</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <body>
-    <section class="sub-header">
-      <nav>
-        <a href="index.html"><img src="./images/logo.png" alt="" /></a>
-        <div class="nav-links" id="navLinks">
-          <i class="fa-solid fa fa-xmark" onclick="hideMenu()"></i>
-          <ul>
-            <li><a href="./index.html">HOME</a></li>
-            <li><a href="./about.html">ABOUT</a></li>
-            <li><a href="./course.html">COURSE</a></li>
-            <li><a href="./blog.html">BLOG</a></li>
-            <li><a href="./contact.html">CONTACT</a></li>
-          </ul>
-        </div>
-        <i class="fa-solid fa fa-bars" onclick="showMenu()"></i>
-      </nav>
-      <h1>Our Courses</h1>
-    </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>University Website</title>
 
-   <!--course-->
+  <!-- Google Font & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-   <section class="course">
+  <style>
+    /* ---------- GENERAL STYLES ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Noto Serif", serif;
+    }
+
+    body {
+      background: #fff;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* ---------- HEADER ---------- */
+    .sub-header {
+      height: 60vh;
+      width: 100%;
+      background: linear-gradient(rgba(0, 0, 60, 0.6), rgba(0, 0, 60, 0.6)), url("https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .sub-header h1 {
+      font-size: 3rem;
+      letter-spacing: 1px;
+      animation: slideDown 1s ease-out;
+    }
+
+    /* ---------- NAVIGATION ---------- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+    }
+
+    nav img {
+      width: 150px;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      flex: 1;
+      text-align: right;
+    }
+
+    .nav-links ul {
+      list-style: none;
+    }
+
+    .nav-links ul li {
+      display: inline-block;
+      padding: 8px 20px;
+      position: relative;
+    }
+
+    .nav-links ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 17px;
+      transition: color 0.3s;
+    }
+
+    .nav-links ul li a:hover {
+      color: #ffd700;
+    }
+
+    nav .fa-bars, nav .fa-xmark {
+      display: none;
+      color: #fff;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    /* ---------- COURSE SECTION ---------- */
+    .course {
+      width: 80%;
+      margin: auto;
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .course h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      animation: fadeUp 1s ease-in-out;
+    }
+
+    .course p {
+      color: #777;
+      font-size: 16px;
+      line-height: 22px;
+      margin-bottom: 40px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .course-col {
+      flex-basis: 31%;
+      background: #f6f6f6;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      padding: 20px;
+      transition: transform 0.5s, box-shadow 0.5s;
+      animation: fadeUp 1.2s ease-in-out;
+    }
+
+    .course-col:hover {
+      transform: translateY(-10px);
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ---------- FACILITIES ---------- */
+    .facilities {
+      width: 80%;
+      margin: auto;
+      text-align: center;
+      padding: 50px 0;
+      background: #fafafa;
+    }
+
+    .facilities h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      animation: fadeUp 1s ease-in-out;
+    }
+
+    .facilities p {
+      color: #777;
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    .facilities-col {
+      flex-basis: 31%;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      text-align: left;
+      transition: all 0.4s ease;
+      animation: fadeUp 1.2s ease-in-out;
+    }
+
+    .facilities-col img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.5s;
+    }
+
+    .facilities-col:hover img {
+      transform: scale(1.05);
+    }
+
+    .facilities-col h3 {
+      margin: 16px 0;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .facilities-col p {
+      color: #555;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      background: #001b33;
+      color: #fff;
+      text-align: center;
+      padding: 50px 20px;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .footer h4 {
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .footer p {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .icons i {
+      color: #ffd700;
+      margin: 0 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .icons i:hover {
+      transform: scale(1.2);
+      color: #fff;
+    }
+
+    .footer .fa-heart {
+      color: #ff3b3b;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .nav-links ul li {
+        display: block;
+        margin: 10px 0;
+      }
+
+      .nav-links {
+        position: absolute;
+        background: #001b33;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -220px;
+        text-align: left;
+        z-index: 2;
+        transition: right 0.5s;
+        padding-top: 60px;
+      }
+
+      nav .fa-bars, nav .fa-xmark {
+        display: block;
+      }
+
+      .row {
+        flex-direction: column;
+      }
+    }
+
+    /* ---------- ANIMATIONS ---------- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="sub-header">
+    <nav>
+      <a href="#"><img src="https://i.postimg.cc/x8P3Pj4s/logo.png" alt="Logo" /></a>
+      <div class="nav-links" id="navLinks">
+        <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">ABOUT</a></li>
+          <li><a href="#">COURSE</a></li>
+          <li><a href="#">BLOG</a></li>
+          <li><a href="#">CONTACT</a></li>
+        </ul>
+      </div>
+      <i class="fa-solid fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>Our Courses</h1>
+  </section>
+
+  <!-- Course Section -->
+  <section class="course">
     <h1>Courses We Offer</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    <p>Choose from a variety of courses designed to shape your career.</p>
+
     <div class="row">
       <div class="course-col">
         <h3>Intermediate</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-           Itaque voluptatibus sit quia hic aliquam nam! Doloremque cumque placeat, 
-           repudiandae soluta exercitationem minus libero magnam, aspernatur, 
-           quidem dolor ex aut quibusdam!
-        </p>
+        <p>Our foundation-level programs help students build strong academic and technical skills for higher studies.</p>
       </div>
+
       <div class="course-col">
         <h3>Degree</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-           Itaque voluptatibus sit quia hic aliquam nam! Doloremque cumque placeat, 
-           repudiandae soluta exercitationem minus libero magnam, aspernatur, 
-           quidem dolor ex aut quibusdam!
-        </p>
+        <p>Explore degree programs that combine in-depth knowledge, research, and practical exposure in your field of interest.</p>
       </div>
+
       <div class="course-col">
         <h3>Post Graduation</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-           Itaque voluptatibus sit quia hic aliquam nam! Doloremque cumque placeat, 
-           repudiandae soluta exercitationem minus libero magnam, aspernatur, 
-           quidem dolor ex aut quibusdam!
-        </p>
+        <p>Advance your learning with specialized postgraduate programs guided by expert faculty and modern facilities.</p>
       </div>
     </div>
   </section>
 
-  <!----- facitlities------->
-
+  <!-- Facilities -->
   <section class="facilities">
     <h1>Our Facilities</h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+    <p>Experience a campus designed to enhance your learning journey.</p>
+
     <div class="row">
       <div class="facilities-col">
-        <img src="./images/library.png" alt="">
+        <img src="https://i.postimg.cc/wBv0p65L/library.png" alt="Library" />
         <h3>World Class Library</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit delectus, voluptate fuga blanditiis saepe mollitia odio accusantium nulla reprehenderit vero?</p>
+        <p>Access thousands of books, journals, and digital resources in a modern and quiet study environment.</p>
       </div>
+
       <div class="facilities-col">
-        <img src="./images/basketball.png" alt="">
+        <img src="https://i.postimg.cc/7LHgKnfV/basketball.png" alt="Playground" />
         <h3>Largest Play Ground</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit delectus, voluptate fuga blanditiis saepe mollitia odio accusantium nulla reprehenderit vero?</p>
+        <p>Our wide sports facilities encourage physical fitness and teamwork among students.</p>
       </div>
+
       <div class="facilities-col">
-        <img src="./images/cafeteria.png" alt="">
+        <img src="https://i.postimg.cc/4dmnCzC7/cafeteria.png" alt="Cafeteria" />
         <h3>Tasty And Healthy Food</h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit delectus, voluptate fuga blanditiis saepe mollitia odio accusantium nulla reprehenderit vero?</p>
+        <p>Enjoy nutritious and delicious meals prepared in our clean and modern cafeteria.</p>
       </div>
     </div>
   </section>
 
-<!--end facilities-->
+  <!-- Footer -->
+  <section class="footer">
+    <h4>About Us</h4>
+    <p>We aim to provide quality education and holistic development for all learners.</p>
+    <div class="icons">
+      <i class="fa-brands fa-facebook"></i>
+      <i class="fa-brands fa-twitter"></i>
+      <i class="fa-brands fa-instagram"></i>
+      <i class="fa-brands fa-linkedin"></i>
+    </div>
+    <p>Made With <i class="fa-solid fa-heart"></i> by <strong>Tejas</strong></p>
+  </section>
 
-    <section class="footer">
-      <h4>About Us</h4>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur error asperiores vero vel incidunt sit!</p>
-      <div class="icons">
-        <i class="fa-brands fa-facebook"></i>
-        <i class="fa-brands fa-twitter"></i>
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-linkedin"></i>
-      </div>
-      <p>Made Width <i class="fa-solid fa-heart"></i> by Me Papuna</p>
-    </section>
-
-    <script src="script.js"></script>
-  </body>
+  <script>
+    const navLinks = document.getElementById("navLinks");
+    function showMenu() {
+      navLinks.style.right = "0";
+    }
+    function hideMenu() {
+      navLinks.style.right = "-220px";
+    }
+  </script>
+</body>
 </html>
