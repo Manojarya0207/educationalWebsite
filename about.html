@@ -2,64 +2,450 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>University Website</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>University Website | About Us</title>
+
+    <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <body>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #f8f9fa;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      /* HEADER */
+      .sub-header {
+        height: 55vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1400&q=60")
+            center/cover no-repeat;
+        color: #fff;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        animation: fadeInHeader 2s ease-out forwards;
+      }
+
+      @keyframes fadeInHeader {
+        from {
+          opacity: 0;
+          transform: scale(1.05);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .sub-header h1 {
+        font-size: 3rem;
+        animation: fadeIn 2.2s ease-in-out;
+      }
+
+      /* NAVBAR */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 80px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+      }
+
+      nav img {
+        width: 130px;
+        filter: brightness(100%);
+      }
+
+      .nav-links {
+        flex: 1;
+        text-align: right;
+        transition: 0.5s;
+      }
+
+      .nav-links ul {
+        list-style: none;
+      }
+
+      .nav-links ul li {
+        display: inline-block;
+        margin: 0 20px;
+        opacity: 0;
+        transform: translateY(-10px);
+        animation: slideInNav 0.6s ease forwards;
+      }
+
+      .nav-links ul li:nth-child(1) {
+        animation-delay: 0.3s;
+      }
+      .nav-links ul li:nth-child(2) {
+        animation-delay: 0.45s;
+      }
+      .nav-links ul li:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .nav-links ul li:nth-child(4) {
+        animation-delay: 0.75s;
+      }
+      .nav-links ul li:nth-child(5) {
+        animation-delay: 0.9s;
+      }
+
+      @keyframes slideInNav {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .nav-links ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .nav-links ul li a:hover,
+      .nav-links ul li a.active {
+        color: #ff6b6b;
+      }
+
+      nav .fa-solid {
+        display: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      /* ABOUT SECTION */
+      .about-us {
+        width: 80%;
+        margin: auto;
+        padding: 100px 0;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .about-col {
+        flex-basis: 48%;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: 1s ease;
+      }
+
+      .about-col.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .about-col img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .about-col h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #111;
+      }
+
+      .about-col p {
+        line-height: 1.8;
+        margin-bottom: 30px;
+      }
+
+      .hero-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: #ff6b6b;
+        color: #fff;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .hero-btn:hover {
+        background: #ff4040;
+        transform: scale(1.05);
+      }
+
+      /* VALUES SECTION */
+      .values {
+        background: #fff;
+        text-align: center;
+        padding: 80px 0;
+      }
+
+      .values h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 1s ease;
+      }
+
+      .values.visible h2 {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .value-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .value-card {
+        width: 280px;
+        background: #f1f1f1;
+        padding: 30px;
+        border-radius: 15px;
+        transition: 0.4s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      .value-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .value-card:hover {
+        background: #ff6b6b;
+        color: #fff;
+        transform: translateY(-10px) scale(1.03);
+      }
+
+      .value-card i {
+        font-size: 2rem;
+        margin-bottom: 15px;
+      }
+
+      /* FOOTER */
+      .footer {
+        background: #222;
+        color: #ccc;
+        text-align: center;
+        padding: 50px 0;
+      }
+
+      .footer h4 {
+        color: #fff;
+        margin-bottom: 15px;
+      }
+
+      .footer .icons i {
+        margin: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .footer .icons i:hover {
+        color: #ff6b6b;
+      }
+
+      .footer p {
+        margin-top: 10px;
+        font-size: 14px;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        nav {
+          padding: 15px 30px;
+        }
+
+        .nav-links {
+          position: absolute;
+          background: #333;
+          height: 100vh;
+          width: 200px;
+          top: 0;
+          right: -200px;
+          text-align: left;
+          transition: 0.5s;
+          z-index: 3;
+        }
+
+        .nav-links ul {
+          padding: 30px;
+        }
+
+        .nav-links ul li {
+          display: block;
+          margin: 20px 0;
+        }
+
+        nav .fa-solid {
+          display: block;
+        }
+
+        .row {
+          flex-direction: column;
+        }
+
+        .about-col {
+          flex-basis: 100%;
+          margin-bottom: 30px;
+        }
+
+        .sub-header h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
     <section class="sub-header">
       <nav>
-        <a href="index.html"><img src="./images/logo.png" alt="" /></a>
+        <a href="#"><img src="images/logo.png" alt="Logo" /></a>
         <div class="nav-links" id="navLinks">
-          <i class="fa-solid fa fa-xmark" onclick="hideMenu()"></i>
+          <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
           <ul>
-            <li><a href="./index.html">HOME</a></li>
-            <li><a href="./about.html">ABOUT</a></li>
-            <li><a href="./course.html">COURSE</a></li>
-            <li><a href="./blog.html">BLOG</a></li>
-            <li><a href="./contact.html">CONTACT</a></li>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
           </ul>
         </div>
-        <i class="fa-solid fa fa-bars" onclick="showMenu()"></i>
+        <i class="fa-solid fa-bars" onclick="showMenu()"></i>
       </nav>
       <h1>About Us</h1>
     </section>
 
-    <!-- about us content -->
-
+    <!-- About Section -->
     <section class="about-us">
-      <div class="row" >
-        <div class="about-col" >
-          <h1>We are the world's largest University</h1>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus beatae assumenda eaque debitis illum recusandae cumque. Blanditiis fugit, repellat ipsam temporibus corrupti totam voluptate laboriosam impedit molestias asperiores iusto voluptates, corporis necessitatibus exercitationem cupiditate aliquam minima. Optio exercitationem error dignissimos tenetur eius aspernatur, commodi, obcaecati doloremque qui quibusdam nam. Commodi!</p>
-          <a href="" class="hero-btn red-btn">EXPLORE NOW</a>
+      <div class="row">
+        <div class="about-col">
+          <h1>We are the World's Leading University</h1>
+          <p>
+            Our University is dedicated to excellence in teaching, learning, and
+            research. We provide students with the skills and knowledge needed
+            to thrive in a rapidly changing world. With world-class faculty,
+            modern infrastructure, and a global community, we prepare leaders of
+            tomorrow.
+          </p>
+          <a href="#" class="hero-btn">Explore Programs</a>
         </div>
         <div class="about-col">
-          <img src="images/about.jpg" alt="">
+          <img
+            src="images/library.png"
+            alt="Campus"
+          />
         </div>
       </div>
     </section>
 
+    <!-- Values Section -->
+    <section class="values">
+      <h2>Our Core Values</h2>
+      <div class="value-container">
+        <div class="value-card">
+          <i class="fa-solid fa-book-open"></i>
+          <h3>Excellence</h3>
+          <p>We strive for academic and professional excellence in all we do.</p>
+        </div>
+        <div class="value-card">
+          <i class="fa-solid fa-users"></i>
+          <h3>Community</h3>
+          <p>We nurture a supportive environment for growth and innovation.</p>
+        </div>
+        <div class="value-card">
+          <i class="fa-solid fa-globe"></i>
+          <h3>Global Impact</h3>
+          <p>Our students and faculty create meaningful change worldwide.</p>
+        </div>
+      </div>
+    </section>
 
-
+    <!-- Footer -->
     <section class="footer">
       <h4>About Us</h4>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur error asperiores vero vel incidunt sit!</p>
+      <p>
+        We are committed to shaping the future through quality education,
+        innovation, and inclusivity.
+      </p>
       <div class="icons">
         <i class="fa-brands fa-facebook"></i>
         <i class="fa-brands fa-twitter"></i>
         <i class="fa-brands fa-instagram"></i>
         <i class="fa-brands fa-linkedin"></i>
       </div>
-      <p>Made Width <i class="fa-solid fa-heart"></i> by Me Papuna</p>
+      <p>&copy; 2025 University Website. All rights reserved.</p>
     </section>
 
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script>
+      const navLinks = document.getElementById("navLinks");
+
+      function showMenu() {
+        navLinks.style.right = "0";
+      }
+
+      function hideMenu() {
+        navLinks.style.right = "-200px";
+      }
+
+      // Scroll animations
+      const revealOnScroll = () => {
+        const reveals = document.querySelectorAll(
+          ".about-col, .values, .value-card"
+        );
+        reveals.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) {
+            el.classList.add("visible");
+          }
+        });
+      };
+
+      window.addEventListener("scroll", revealOnScroll);
+      revealOnScroll();
+    </script>
   </body>
 </html>
