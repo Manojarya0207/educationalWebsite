@@ -4,94 +4,338 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>University Website</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>University | Contact Us</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background-color: #0a0a0f;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      /* Header Section */
+      .sub-header {
+        background: linear-gradient(135deg, #001f3f, #003366, #001f3f);
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        text-align: center;
+      }
+
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 60px;
+        position: absolute;
+        top: 0;
+      }
+
+      nav img {
+        width: 120px;
+      }
+
+      .nav-links ul {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links ul li a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .nav-links ul li a:hover {
+        color: #00ffff;
+        text-shadow: 0 0 8px #00ffff;
+      }
+
+      .fa-bars,
+      .fa-xmark {
+        display: none;
+        cursor: pointer;
+      }
+
+      .sub-header h1 {
+        font-size: 48px;
+        letter-spacing: 2px;
+        color: #00ffff;
+        text-shadow: 0 0 20px #00ffff;
+        animation: fadeInDown 1.5s ease;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Contact Section */
+      .contact-us {
+        padding: 80px 10%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .contact-col {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .contact-col div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .contact-col i {
+        font-size: 24px;
+        color: #00ffff;
+        margin-right: 20px;
+        transition: 0.3s;
+      }
+
+      .contact-col i:hover {
+        transform: scale(1.3);
+        color: #00bfff;
+      }
+
+      .contact-col span h5 {
+        font-size: 18px;
+        color: #fff;
+      }
+
+      .contact-col span p {
+        color: #aaa;
+        font-size: 14px;
+      }
+
+      form input,
+      form textarea {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 15px;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        font-size: 15px;
+      }
+
+      form input:focus,
+      form textarea:focus {
+        border: 1px solid #00ffff;
+        box-shadow: 0 0 10px #00ffff;
+      }
+
+      .hero-btn {
+        background: #00ffff;
+        color: #000;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .hero-btn:hover {
+        background: #00bfff;
+        box-shadow: 0 0 20px #00ffff;
+      }
+
+      /* Map Section */
+      .location iframe {
+        width: 100%;
+        height: 400px;
+        border: 0;
+        border-radius: 12px;
+        margin-top: 60px;
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+      }
+
+      /* Footer Section */
+      .footer {
+        text-align: center;
+        padding: 60px 20px;
+        background: #001f3f;
+        margin-top: 60px;
+      }
+
+      .footer h4 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: #00ffff;
+      }
+
+      .footer p {
+        color: #aaa;
+        margin-bottom: 25px;
+      }
+
+      .icons i {
+        margin: 0 12px;
+        color: #00ffff;
+        font-size: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .icons i:hover {
+        transform: scale(1.2);
+        color: #00bfff;
+      }
+
+      .footer i.fa-heart {
+        color: #ff005d;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        nav {
+          padding: 20px;
+        }
+
+        .nav-links {
+          display: none;
+          background: #001f3f;
+          position: absolute;
+          top: 70px;
+          right: 0;
+          width: 200px;
+          text-align: left;
+          padding: 20px;
+          border-radius: 0 0 0 10px;
+        }
+
+        .nav-links ul {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .fa-bars {
+          display: block;
+          color: #00ffff;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
     <section class="sub-header">
       <nav>
-        <a href="index.html"><img src="./images/logo.png" alt="" /></a>
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_placeholder.svg" alt="logo" /></a>
         <div class="nav-links" id="navLinks">
-          <i class="fa-solid fa fa-xmark" onclick="hideMenu()"></i>
+          <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
           <ul>
-            <li><a href="./index.html">HOME</a></li>
-            <li><a href="./about.html">ABOUT</a></li>
-            <li><a href="./course.html">COURSE</a></li>
-            <li><a href="./blog.html">BLOG</a></li>
-            <li><a href="./contact.html">CONTACT</a></li>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">COURSE</a></li>
+            <li><a href="#">BLOG</a></li>
+            <li><a href="#">CONTACT</a></li>
           </ul>
         </div>
-        <i class="fa-solid fa fa-bars" onclick="showMenu()"></i>
+        <i class="fa-solid fa-bars" onclick="showMenu()"></i>
       </nav>
       <h1>Contact Us</h1>
     </section>
 
-
-
-    <!--------contact us--------->
     <section class="location">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95243.47470561748!2d44.72510054999999!3d41.755925999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4044723a1f33e85f%3A0x1f87d993055e82b1!2sVake-Saburtalo%2C%20Tbilisi!5e0!3m2!1sen!2sge!4v1671205205869!5m2!1sen!2sge" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95243.47470561748!2d44.72510054999999!3d41.755925999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4044723a1f33e85f%3A0x1f87d993055e82b1!2sVake-Saburtalo%2C%20Tbilisi!5e0!3m2!1sen!2sge!4v1671205205869!5m2!1sen!2sge"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
     </section>
 
     <section class="contact-us">
-      <div class="row">
-        <div class="contact-col">
-          <div>
-            <i class="fa-solid fa-house"></i>
-            <span>
+      <div class="contact-col">
+        <div>
+          <i class="fa-solid fa-house"></i>
+          <span>
             <h5>XYZ Road, ABC Building</h5>
-            <p>Tbilis, Dighomi</p>
+            <p>Tbilisi, Dighomi</p>
           </span>
-          </div>
-          <div>
-            <i class="fa-solid fa-phone"></i>
-            <span>
+        </div>
+        <div>
+          <i class="fa-solid fa-phone"></i>
+          <span>
             <h5>+995995302</h5>
             <p>Monday to Saturday, 10AM to 6PM</p>
           </span>
-          </div>
-          <div>
-            <i class="fa-solid fa-envelope"></i>
-            <span>
+        </div>
+        <div>
+          <i class="fa-solid fa-envelope"></i>
+          <span>
             <h5>info@mail.com</h5>
-            <p>Email us </p>
+            <p>Email us anytime</p>
           </span>
-          </div>
         </div>
-        <div class="contact-col">
-          <form action="form-handler.php" method = "post">
-            <input type="text" name="name" placeholder="Enter Your Name" required>
-            <input type="email" name="email" placeholder="Enter Email" required>
-            <input type="text" name="subject" placeholder="Enter Your Subject" required>
-            <textarea rows="8" name="message" placeholder="Message" required></textarea>
-            <button type="submit" class="hero-btn red-btn">Send Message</button>
-            
-          </form>
-        </div>
+      </div>
+
+      <div class="contact-col">
+        <form action="#" method="post">
+          <input type="text" name="name" placeholder="Enter Your Name" required />
+          <input type="email" name="email" placeholder="Enter Your Email" required />
+          <input type="text" name="subject" placeholder="Enter Your Subject" required />
+          <textarea rows="8" name="message" placeholder="Enter Your Message" required></textarea>
+          <button type="submit" class="hero-btn">Send Message</button>
+        </form>
       </div>
     </section>
 
-    
-
-
-
     <section class="footer">
       <h4>About Us</h4>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur error asperiores vero vel incidunt sit!</p>
+      <p>
+        We are a forward-thinking institution dedicated to innovation,
+        education, and excellence.
+      </p>
       <div class="icons">
         <i class="fa-brands fa-facebook"></i>
         <i class="fa-brands fa-twitter"></i>
         <i class="fa-brands fa-instagram"></i>
         <i class="fa-brands fa-linkedin"></i>
       </div>
-      <p>Made Width <i class="fa-solid fa-heart"></i> by Me Papuna</p>
+      <p>Made with <i class="fa-solid fa-heart"></i> by Arya Group</p>
     </section>
 
-    <script src="script.js"></script>
+    <script>
+      const navLinks = document.getElementById("navLinks");
+      function showMenu() {
+        navLinks.style.display = "block";
+      }
+      function hideMenu() {
+        navLinks.style.display = "none";
+      }
+    </script>
   </body>
 </html>
