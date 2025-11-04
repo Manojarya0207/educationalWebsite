@@ -4,20 +4,330 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>University Website</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>University Website - Blog</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <body>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      /* === GENERAL RESET & SETUP === */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Noto Serif", serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f9f9f9;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      /* === SUB HEADER (Hero Banner) === */
+      .sub-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1503676260748-1c4341b5a53c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80")
+            no-repeat center center/cover;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 0 20px;
+      }
+
+      .sub-header h1 {
+        font-size: 2.3rem;
+        margin-top: 20px;
+        font-weight: 700;
+      }
+
+      /* === NAVIGATION === */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 5%;
+        background-color: white;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav img {
+        width: 120px;
+        height: auto;
+      }
+
+      .nav-links {
+        flex: 1;
+        text-align: right;
+      }
+
+      .nav-links ul li {
+        display: inline-block;
+        margin-left: 30px;
+      }
+
+      .nav-links ul li a {
+        font-weight: 600;
+        color: #555;
+        transition: color 0.3s;
+      }
+
+      .nav-links ul li a:hover {
+        color: #e63946;
+      }
+
+      nav .fa-bars,
+      nav .fa-xmark {
+        display: none;
+        font-size: 24px;
+        color: #333;
+        cursor: pointer;
+      }
+
+      /* === BLOG CONTENT LAYOUT === */
+      .blog-content {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .row {
+        display: flex;
+        gap: 40px;
+      }
+
+      .blog-left {
+        flex: 3;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .blog-left img {
+        width: 100%;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      .blog-left h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #1d3557;
+      }
+
+      .blog-left p {
+        margin-bottom: 15px;
+        color: #444;
+        font-size: 1.05rem;
+      }
+
+      /* === COMMENT BOX === */
+      .comment-box {
+        margin-top: 40px;
+      }
+
+      .comment-box h3 {
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        color: #1d3557;
+      }
+
+      .comment-form input,
+      .comment-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-family: "Noto Serif", serif;
+        font-size: 1rem;
+      }
+
+      .comment-form textarea {
+        resize: vertical;
+      }
+
+      .hero-btn {
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .red-btn {
+        background-color: #e63946;
+        color: white;
+      }
+
+      .red-btn:hover {
+        background-color: #d90429;
+        transform: translateY(-2px);
+      }
+
+      /* === BLOG RIGHT SIDEBAR === */
+      .blog-right {
+        flex: 1;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        align-self: flex-start;
+        position: sticky;
+        top: 80px;
+      }
+
+      .blog-right h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        color: #1d3557;
+      }
+
+      .blog-right div {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .blog-right div span:first-child {
+        color: #457b9d;
+        font-weight: 600;
+      }
+
+      .blog-right div span:last-child {
+        background: #f1faee;
+        color: #e63946;
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+
+      /* === FOOTER === */
+      .footer {
+        background: #1d3557;
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 60px;
+      }
+
+      .footer h4 {
+        margin-bottom: 10px;
+      }
+
+      .footer p {
+        margin: 8px 0;
+        color: #f1faee;
+      }
+
+      .icons {
+        margin: 20px 0;
+      }
+
+      .icons i {
+        font-size: 1.5rem;
+        margin: 0 10px;
+        color: #a8dadc;
+        transition: color 0.3s;
+        cursor: pointer;
+      }
+
+      .icons i:hover {
+        color: white;
+      }
+
+      /* === RESPONSIVE DESIGN === */
+      @media (max-width: 768px) {
+        .row {
+          flex-direction: column;
+        }
+
+        .blog-right {
+          position: static;
+          margin-top: 30px;
+        }
+
+        .sub-header h1 {
+          font-size: 1.8rem;
+        }
+
+        nav .nav-links ul {
+          position: fixed;
+          background: white;
+          height: 100vh;
+          width: 200px;
+          top: 0;
+          right: -200px;
+          text-align: left;
+          transition: 0.5s;
+          padding-top: 80px;
+          box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .nav-links ul li {
+          display: block;
+          margin: 25px 0;
+          padding-left: 20px;
+        }
+
+        nav .fa-bars {
+          display: block;
+          z-index: 1001;
+        }
+
+        .nav-links ul.visible {
+          right: 0;
+        }
+
+        nav .fa-xmark {
+          position: absolute;
+          top: 25px;
+          right: 25px;
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <section class="sub-header">
       <nav>
-        <a href="index.html"><img src="./images/logo.png" alt="" /></a>
+        <a href="index.html"
+          ><img
+            src="https://via.placeholder.com/120x40?text=UNI+LOGO"
+            alt="University Logo"
+        /></a>
         <div class="nav-links" id="navLinks">
-          <i class="fa-solid fa fa-xmark" onclick="hideMenu()"></i>
+          <i class="fa-solid fa-xmark" onclick="hideMenu()"></i>
           <ul>
             <li><a href="./index.html">HOME</a></li>
             <li><a href="./about.html">ABOUT</a></li>
@@ -26,88 +336,104 @@
             <li><a href="./contact.html">CONTACT</a></li>
           </ul>
         </div>
-        <i class="fa-solid fa fa-bars" onclick="showMenu()"></i>
+        <i class="fa-solid fa-bars" onclick="showMenu()"></i>
       </nav>
-      <h1>Our Cetificate & Online Programs for 2021 </h1>
+      <h1>Our Certificate & Online Programs for 2025</h1>
     </section>
 
-    <!--blog page content-->
-
+    <!-- Blog Page Content -->
     <section class="blog-content">
       <div class="row">
         <div class="blog-left">
-          <img src="./images/certificate.jpg" alt="">
-          <h2>Our Certificate & Online Programs For 2021</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis facere, magni accusamus iure unde culpa ab fuga voluptatem impedit, ipsum quas aperiam vel at corporis adipisci quae mollitia atque odio sint praesentium! Repellendus, saepe itaque libero magni nihil quisquam dicta natus facilis est minus aperiam dolorem non sunt nulla molestiae.</p>
-          <br>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur deserunt beatae a, quos ipsam harum voluptate nulla? Officiis temporibus delectus laudantium. Quasi laborum omnis totam quam tempora assumenda sint quisquam deserunt, enim ab eveniet quo porro, suscipit rerum beatae fuga cupiditate ipsum, impedit non dolore. Quo nihil quasi deleniti sunt.</p>
-          <br>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet quas consequatur reprehenderit id eaque delectus, velit nulla cum praesentium earum ratione dolorum ut aliquam nesciunt hic, voluptate laboriosam incidunt ex ab modi quam esse obcaecati inventore! Quaerat assumenda recusandae praesentium id ut suscipit corporis, ducimus explicabo fuga nobis laboriosam maxime.</p>
-          <br>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est nesciunt sequi quo suscipit. Ullam, laborum? Commodi dignissimos facere nesciunt distinctio, vero nulla hic dicta vel harum perspiciatis consectetur illo nihil, labore a fugiat quo amet tempore quam voluptatum? Ipsam tenetur magnam mollitia dolorem exercitationem libero labore omnis rem earum soluta accusamus, at dignissimos molestiae! Obcaecati voluptas officia quae distinctio aliquid?</p>
-        
+          <img
+            src="https://images.unsplash.com/photo-1498243890484-8a5059061317?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+            alt="Certificate Programs"
+          />
+          <h2>Our Certificate & Online Programs for 2025</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis facere, magni accusamus iure unde culpa ab fuga voluptatem impedit, ipsum quas aperiam vel at corporis adipisci quae mollitia atque odio sint praesentium! Repellendus, saepe itaque libero magni nihil quisquam dicta natus facilis est minus aperiam dolorem non sunt nulla molestiae.
+          </p>
+          <br />
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur deserunt beatae a, quos ipsam harum voluptate nulla? Officiis temporibus delectus laudantium. Quasi laborum omnis totam quam tempora assumenda sint quisquam deserunt, enim ab eveniet quo porro, suscipit rerum beatae fuga cupiditate ipsum, impedit non dolore. Quo nihil quasi deleniti sunt.
+          </p>
+          <br />
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet quas consequatur reprehenderit id eaque delectus, velit nulla cum praesentium earum ratione dolorum ut aliquam nesciunt hic, voluptate laboriosam incidunt ex ab modi quam esse obcaecati inventore! Quaerat assumenda recusandae praesentium id ut suscipit corporis, ducimus explicabo fuga nobis laboriosam maxime.
+          </p>
+          <br />
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est nesciunt sequi quo suscipit. Ullam, laborum? Commodi dignissimos facere nesciunt distinctio, vero nulla hic dicta vel harum perspiciatis consectetur illo nihil, labore a fugiat quo amet tempore quam voluptatum? Ipsam tenetur magnam mollitia dolorem exercitationem libero labore omnis rem earum soluta accusamus, at dignissimos molestiae! Obcaecati voluptas officia quae distinctio aliquid?
+          </p>
+
           <div class="comment-box">
             <h3>Leave A Comment</h3>
             <form class="comment-form">
-              <input type="text" placeholder="Enter Name">
-              <input type="email" placeholder="Enter Mail">
-              <textarea rows="5" placeholder="Your Comment"></textarea>
+              <input type="text" placeholder="Enter Name" required />
+              <input type="email" placeholder="Enter Mail" required />
+              <textarea rows="5" placeholder="Your Comment" required></textarea>
               <button type="submit" class="hero-btn red-btn">Post Comment</button>
             </form>
           </div>
-        
-        
         </div>
+
         <div class="blog-right">
           <h3>Post Categories</h3>
           <div>
-            <span>Business Analitycs</span>
+            <span>Business Analytics</span>
             <span>21</span>
           </div>
           <div>
-            <span>Business Analitycs</span>
-            <span>21</span>
+            <span>Data Science</span>
+            <span>18</span>
           </div>
           <div>
-            <span>Business Analitycs</span>
-            <span>21</span>
+            <span>Web Development</span>
+            <span>15</span>
           </div>
           <div>
-            <span>Business Analitycs</span>
-            <span>21</span>
+            <span>Digital Marketing</span>
+            <span>12</span>
           </div>
           <div>
-            <span>Business Analitycs</span>
-            <span>21</span>
+            <span>AI & Machine Learning</span>
+            <span>9</span>
           </div>
           <div>
-            <span>Business Analitycs</span>
-            <span>21</span>
+            <span>Cybersecurity</span>
+            <span>7</span>
           </div>
           <div>
-            <span>Business Analitycs</span>
-            <span>21</span>
+            <span>UX/UI Design</span>
+            <span>5</span>
           </div>
         </div>
       </div>
     </section>
 
-
-    <!--end-->
-
-
+    <!-- Footer -->
     <section class="footer">
       <h4>About Us</h4>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur error asperiores vero vel incidunt sit!</p>
+      <p>
+        Empowering learners worldwide with cutting-edge academic and professional programs.
+      </p>
       <div class="icons">
         <i class="fa-brands fa-facebook"></i>
         <i class="fa-brands fa-twitter"></i>
         <i class="fa-brands fa-instagram"></i>
         <i class="fa-brands fa-linkedin"></i>
       </div>
-      <p>Made Width <i class="fa-solid fa-heart"></i> by Me Papuna</p>
+      <p>Made with <i class="fa-solid fa-heart" style="color: #e63946"></i> by Me Papuna</p>
     </section>
 
-    <script src="script.js"></script>
+    <script>
+      function showMenu() {
+        document.getElementById("navLinks").classList.add("visible");
+      }
+
+      function hideMenu() {
+        document.getElementById("navLinks").classList.remove("visible");
+      }
+    </script>
   </body>
 </html>
